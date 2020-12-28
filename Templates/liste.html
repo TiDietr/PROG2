@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }}</title>
+</head>
+<body>
+    <h1>{{ ueberschrift }}</h1>
+    <p> {{ Einleitung }}</p>
+    {% for eintrag in daten %}
+    <a href="{{ url_for('einzel_liste', aktivitaet=eintrag[0] ) }}"> {{ eintrag[0] }}</a>
+         mit {{ eintrag[1] }} kg {{ eintrag[1] }} Wiederholungen <br>
+    {% endfor %}
+    <a href="{{ url_for('analyse') }}"> Aktivitäten analysieren</a>
+    <br>
+</body>
+</html>

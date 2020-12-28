@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{ app_name }}</title>
+</head>
+<body>
+    <h1>{{ ueberschrift }}</h1>
+    <p> {{ einleitung }}</p>
+    {% for name, zeit in daten.items() %}
+        {{ name[0] }} mit {{ zeit[1] }} kg
+    <br>
+    {% endfor %}
+</body>
+</html>
