@@ -7,6 +7,11 @@ from berechnungen import summe_der_aktivitaeten
 
 app = Flask("Fitnessplan!")
 
+farben = {
+    "Oberkoerper": "#FF0000",
+    "Beine": "#0000FF",
+    "Ganzkoerper": "#CCEEFF"
+}
 
 @app.route('/')
 def start():
@@ -20,9 +25,11 @@ def eingabe_formular():
         aktivitaet = request.form['aktivitaet']
         gewicht = request.form['gewicht']
         wiederholung = request.form['wiederholung']
-        antwort = speichern(aktivitaet, gewicht, wiederholung)
+        kategorie = request.form['kategorie']
+        antwort = speichern(aktivitaet, gewicht, wiederholung, kategorie)
         return 'Erfolgreiche Eingabe: <br>'+ str(antwort)
-    return render_template('eingabe.html', app_name='Fitnessplan! - Eingabe')
+
+    return render_template('eingabe.html', app_name='Fitnessplan! - Eingabe', kategorien=farben.keys())
 
 @app.route('/liste')
 def liste():
@@ -34,7 +41,9 @@ def liste():
         app_name='Fitnessplan!',
         ueberschrift=titel_text,
         einleitung=einleitungs_text,
-        daten = gespeicherten_eintraege)
+        daten=gespeicherten_eintraege,
+        farben_dict=farben
+    )
 
 @app.route('/liste/<aktivitaet>')
 def einzel_liste(aktivitaet):

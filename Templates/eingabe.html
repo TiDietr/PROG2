@@ -3,8 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <title>{{ app_name }}</title>
-</head>
-<body>
+ <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+  </head>
+  <body>
+      <main role="main" class="container">
     <form method="post">
         <input type="text" name="aktivitaet" placeholder="Was hast du gemacht?">
         <br>
@@ -12,8 +14,17 @@
         <br>
         <input type="text" name="wiederholung" placeholder="Wieviele Wiederholungen hast du gemacht?">
         <br>
+        <select name="kategorie">
+            {% for kategorie in kategorien %}
+            <option value="{{kategorie}}">{{kategorie}}</option>
+            {% endfor %}
+        </select>
+        <br>
         <button type="submit">Aktivität speichern</button>
     </form>
+      </main>
+   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
+<script src="{{ url_for ('static', filename='bootstrap-5.0.0-beta1-dist/js/bootstrap.min.js' )}}"></script>
 
 </body>
 </html>

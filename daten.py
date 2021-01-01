@@ -2,7 +2,7 @@ import json
 from typing import TextIO
 
 
-def speichern(aktivitaet, gewicht, wiederholung):
+def speichern(aktivitaet, gewicht, wiederholung, kategorie):
 
     try:
         with open("datenbank.json", "r") as datenbank:
@@ -10,14 +10,14 @@ def speichern(aktivitaet, gewicht, wiederholung):
     except:
         eintraege = []
 
-    eintrag =(aktivitaet, gewicht, wiederholung)
+    eintrag =(aktivitaet, gewicht, wiederholung, kategorie)
 
     eintraege.append(eintrag)
 
     with open("datenbank.json", "w") as datenbank:
         json.dump(eintraege, datenbank)
 
-    return aktivitaet, gewicht, wiederholung
+    return aktivitaet, gewicht, wiederholung, kategorie
 
 
 def laden():
