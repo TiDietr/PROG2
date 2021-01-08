@@ -5,7 +5,9 @@ from flask import request
 from daten import speichern, laden
 from berechnungen import summe_der_aktivitaeten
 
-app = Flask("Fitnessplan!")
+
+
+app = Flask("Fitnesscoach!")
 
 farben = {
     "Oberkoerper": "#FF0000",
@@ -15,9 +17,29 @@ farben = {
 
 @app.route('/')
 def start():
-    titel_text = 'Wilkommen beim persönlichen Fitnessplan'
-    einleitungs_text = 'Hier können sie Ihren Fitnessplan erstellen'
-    return render_template('start.html', app_name='Fitnessplan!', ueberschrift=titel_text, einleitung=einleitungs_text)
+    titel_text = 'Wilkommen beim persönlichen Fitnesscoach'
+    einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
+    return render_template('index.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
+
+@app.route('/bmi')
+def bmi():
+    titel_text = 'Wilkommen beim persönlichen Fitnesscoach'
+    einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
+    return render_template('bmi.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
+
+@app.route('/tracker')
+def tracker():
+    titel_text = 'Wilkommen beim persönlichen Fitnesscoach'
+    einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
+    return render_template('tracker.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
+
+@app.route('/termin')
+def termin():
+    titel_text = 'Wilkommen beim persönlichen Fitnesscoach'
+    einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
+    return render_template('termin.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
+
+
 
 @app.route('/eingabe', methods=['POST','GET'])
 def eingabe_formular():
@@ -29,7 +51,7 @@ def eingabe_formular():
         antwort = speichern(aktivitaet, gewicht, wiederholung, kategorie)
         return 'Erfolgreiche Eingabe: <br>'+ str(antwort)
 
-    return render_template('eingabe.html', app_name='Fitnessplan! - Eingabe', kategorien=farben.keys())
+    return render_template('eingabe.html', app_name='Fitnesscoach! - Eingabe', kategorien=farben.keys())
 
 @app.route('/liste')
 def liste():
