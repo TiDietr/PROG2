@@ -4,7 +4,7 @@ from flask import request
 
 from daten import speichern, laden
 from berechnungen import summe_der_aktivitaeten
-
+from index import rechnen
 
 
 app = Flask("Fitnesscoach!")
@@ -21,11 +21,6 @@ def start():
     einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
     return render_template('index.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
 
-@app.route('/bmi')
-def bmi():
-    titel_text = 'Wilkommen beim persönlichen Fitnesscoach'
-    einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
-    return render_template('bmi.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
 
 @app.route('/tracker')
 def tracker():
@@ -40,6 +35,11 @@ def termin():
     return render_template('termin.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
 
 
+@app.route('/bmi')
+def rechnen():
+    titel_text = 'Wilkommen beim persönlichen Fitnesscoach'
+    einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
+    return render_template('bmi.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
 
 @app.route('/eingabe', methods=['POST','GET'])
 def eingabe_formular():
@@ -56,8 +56,8 @@ def eingabe_formular():
 @app.route('/liste')
 def liste():
     gespeicherten_eintraege = laden()
-    titel_text = 'Liste deiner Aktivitaeten'
-    einleitungs_text = 'Hier werden alle deine Aktivitaeten angezeigt '
+    titel_text = 'Liste deiner Termine'
+    einleitungs_text = 'Hier werden alle deine Termine angezeigt '
     return render_template(
         'liste.html',
         app_name='Fitnessplan!',
@@ -67,15 +67,15 @@ def liste():
         farben_dict=farben
     )
 
-@app.route('/liste/<aktivitaet>')
-def einzel_liste(aktivitaet):
+@app.route('/liste/<termine>')
+def einzel_liste(termin):
     gespeicherten_eintraege = laden()
     neue_liste =[]
     for eintrag in gespeicherten_eintraege:
-        if eintrag [0] == aktivitaet:
+        if eintrag [0] == termin:
             neue_liste.append(eintrag)
-    titel_text = 'Liste deiner Aktivitaeten:' + aktivitaet
-    einleitungs_text = 'Hier sind alle deine' +aktivitaet +'Aktivitaeten'
+    titel_text = 'Liste der Termine:' + termin
+    einleitungs_text = 'Hier sind alle deine' +Termine +'Termine'
     return render_template(
         'liste.html',
         app_name='Fitnessplan!',

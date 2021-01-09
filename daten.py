@@ -2,30 +2,30 @@ import json
 from typing import TextIO
 
 
-def speichern(aktivitaet, gewicht, wiederholung, kategorie):
+def speichern(name, adresse, termin):
 
     try:
-        with open("datenbank.json", "r") as datenbank:
+        with open("termin.json", "r") as datenbank:
          eintraege = json.load(datenbank)
     except:
         eintraege = []
 
-    eintrag =(aktivitaet, gewicht, wiederholung, kategorie)
+    eintrag =(name, adresse, termin)
 
     eintraege.append(eintrag)
 
-    with open("datenbank.json", "w") as datenbank:
+    with open("termin.json", "w") as datenbank:
         json.dump(eintraege, datenbank)
 
-    return aktivitaet, gewicht, wiederholung, kategorie
+    return name, adresse, termin
 
 
 def laden():
     try:
-        with open("datenbank.json", "r") as datenbank:
+        with open("termin.json", "r") as datenbank:
          eintraege = json.load(datenbank)
     except:
-        print('Beim laden konnte keine vorhandene Datenbank gefunden werden')
+        print('Beim laden konnte keine vorhandene Termine in der Datenbank gefunden werden')
         eintraege = []
 
     return eintraege

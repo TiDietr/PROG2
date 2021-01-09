@@ -78,44 +78,66 @@
 
 <!-- Begin page content -->
 <main class="flex-shrink-0">
-  <section class="border-bottom"  style="padding-top: 100px">	<!--CSS-->
-		<div class="container">
-			<div class="form-group">
-				<div class="vergangen">
-				  <h5>Vergebener Termin!</h5>
-				  <p>Das von Ihnen gewählte Wunschdatum {{reserviert}} ist bereits vergeben!</p>
-				  <table class="table">
-                      <thead>
-                        <tr>
-                          <th scope="col">Bereits vergebene Termine</th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {% for termin in reservierungen %}
-                            <tr>
-                              <td>{{termin}}</td>
-                            </tr>
-                        {% endfor %}
-                      </tbody>
-                    </table>
-                    <h6>Nächstmöglicher freier Termin: {{alternative}}</h6>
+  <section class="border-bottom" style="padding-top: 150px; padding-bottom: 75px">	<!--CSS-->
+            <div class="container">
+                <div class="text-center">
+                    <h1>Wilkommen beim Fitnesscoach! Vereinbare jetzt einen Termin!</h1> <!--Text (Titel) -->
+                </div>
+            </div>
+        </section>
 
-                    <form method="POST" action="#"> <!--Eingaben werden auf Server geladen mit Post-->
-                        <div class="form-group">
-                            <label for="email"> Ihr Wunschtermin eingeben:</label>
-                                <input type="datetime-local" class="form-control" name="field5" min="08:00" max="17:00">
-                        </div>
-                        <div class="col-md-6 offset-md-3 offset-lg-3 offset-xl-3 button">
-                                <a><button class="btn btn-primary btn-block" type="submit" name="field5" style="margin-top: 20px;">Senden	<!--Senden-Button-->
+
+
+
+		<section class="border-bottom" style="padding-bottom: 40px">	<!--CSS-->
+            <div class="container">
+
+
+
+
+                <div class="text-center" style="padding-top: 60px; padding-bottom: 60px">	<!--CSS-->
+                    <h2>Jetzt Termin vereinbaren</h2> <!--Titel für Input-Formular-->
+                </div>
+
+                <h4>Persönliche Angaben</h4>
+
+                <form method="POST" action="/"> <!--Eingaben werden auf Server geladen mit Post-->
+                    <div class="form-group">	<!--CSS-->
+                        <label for="subject">Dienstleistungen</label>  <!--Untertitel für Input-->
+                            <select class="form-control" id="subject" required name="field1"> <!--CSS, name "field1" wird benötigt, um auf die Daten per Flask zuzugreifen-->
+                                <option value selected>Wähle aus der Liste</option> <!--Drop down-->
+                                <option value="1">Haare</option> <!--Auswahlmöglichkeit-->
+                                <option value="2">Bart</option>	<!--Auswahlmöglichkeit-->
+                                <option value="3">Haare &amp; Bart</option>	<!--Auswahlmöglichkeit-->
+                        </select>
+                    </div>
+
+                    <div class="form-group"> <!--wie bereits oben beschrieben-->
+                        <label for="email">Vor- und Nachname</label>
+                            <input type="text" class="form-control" id="subject" placeholder="Vor- und Nachname eingeben" required name="field2" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Mobiltelefon</label>
+                            <input type="text" class="form-control" placeholder="Telefonnummer eingeben" required name="field3" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Alter</label>
+                            <input type="text" class="form-control" id="alter" placeholder="Alter eingeben?" required name="field4"/>
+
+                    </div>
+
+
+                            <div class="col-md-6 offset-md-3 offset-lg-3 offset-xl-3 button">
+                                <button class="btn btn-primary btn-block" type="submit" name="submit" style="margin-top: 20px;">Senden	<!--Senden-Button-->
                                 </button>
                             </div>
-                 </form>
 
+            </form>
 
-				</div>
-			</div>
-		</div>
-	</section>
+        </div>
+    </section>
 
 </main>
 
