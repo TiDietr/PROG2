@@ -24,6 +24,7 @@ def start():
 
 @app.route('/tracker')
 def tracker():
+
     titel_text = 'Wilkommen beim persönlichen Fitnesscoach'
     einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
     return render_template('tracker.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
@@ -35,37 +36,46 @@ def termin():
     return render_template('termin.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
 
 
-@app.route('/bmi')
+@app.route('/bmi', methods=['POST','GET'])
 def rechnen():
-    titel_text = 'Wilkommen beim persönlichen Fitnesscoach'
-    einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
-    return render_template('bmi.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
+    bmi=''
+    if request.method == 'POST' and 'gewicht' in request.form and 'groesse' in request.form:
+        gewicht=float(request.form.get('gewicht'))
+        groesse=float(request.form.get('groesse'))
+        bmi= round(gewicht/(groesse * groesse),2)
+    return render_template("bmi.html", bmi=bmi,)
 
-@app.route('/eingabe', methods=['POST','GET'])
+
+
+
+
+@app.route('/eingabe', methods=['POST', 'GET'])
 def eingabe_formular():
-    if request.method =='POST':
-        aktivitaet = request.form['aktivitaet']
-        gewicht = request.form['gewicht']
-        wiederholung = request.form['wiederholung']
-        kategorie = request.form['kategorie']
-        antwort = speichern(aktivitaet, gewicht, wiederholung, kategorie)
-        return 'Erfolgreiche Eingabe: <br>'+ str(antwort)
+        if request.method == 'POST':
+            aktivitaet = request.form['aktivitaet']
+            gewicht = request.form['gewicht']
+            wiederholung = request.form['wiederholung']
+            kategorie = request.form['kategorie']
+            antwort = speichern(aktivitaet, gewicht, wiederholung)
+            return 'Erfolgreiche Eingabe: <br>' + str(antwort)
 
-    return render_template('eingabe.html', app_name='Fitnesscoach! - Eingabe', kategorien=farben.keys())
+        return render_template('eingabe.html', app_name='Fitnesscoach! - Eingabe', kategorien=farben.keys)
+
 
 @app.route('/liste')
 def liste():
-    gespeicherten_eintraege = laden()
-    titel_text = 'Liste deiner Termine'
-    einleitungs_text = 'Hier werden alle deine Termine angezeigt '
-    return render_template(
-        'liste.html',
-        app_name='Fitnessplan!',
-        ueberschrift=titel_text,
-        einleitung=einleitungs_text,
-        daten=gespeicherten_eintraege,
-        farben_dict=farben
-    )
+        gespeicherten_eintraege = laden()
+        titel_text = 'Liste deiner Termine'
+        einleitungs_text = 'Hier werden alle deine Termine angezeigt '
+        return render_template(
+            'liste.html',
+            app_name='Fitnessplan!',
+            ueberschrift=titel_text,
+            einleitung=einleitungs_text,
+            daten=gespeicherten_eintraege,
+            farben_dict=farben
+        )
+
 
 @app.route('/liste/<termine>')
 def einzel_liste(termin):

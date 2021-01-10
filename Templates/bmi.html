@@ -42,6 +42,7 @@
         }
       }
     </style>
+      <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
 
 
     <!-- Custom styles for this template -->
@@ -79,20 +80,30 @@
 </header>
 
 <!-- Begin page content -->
-    <main role="main" class="container">
-    <form method="post">
-      <br>
-      <br>
-      <br>
-      <br>
-        <input type="text" name="gewicht" placeholder="Wie schwer bist du?">
-        <br>
-        <input type="text" name="groesse" placeholder="Wie gross bist du?">
-        <br>
-        <br>
-        <button type="submit" >BMI berechnen</button>
-    </form>
-      </main>
+<br>
+<br>
+<br>
+
+<div class="main">
+	<form class="pure-form" method="POST" action="/bmi">
+	Gewicht in Kg:<br>
+	<input type="text" name="gewicht"><br>
+	Grösse in cm:<br>
+	<input type="text" name="groesse"><br>
+	<button type="submit" class="pure-button pure-button-primary" value="Submit">BMI Berechnen</button>
+	</form>
+</div>
+
+<br>
+
+	{%if bmi %}
+	    <p>
+        Dein BMI ist {{bmi}}
+        </p>
+	{% endif %}
+
+
+
 
 
 
