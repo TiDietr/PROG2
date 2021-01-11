@@ -1,10 +1,10 @@
 from flask import Flask
 from flask import render_template
 from flask import request
+from flask import redirect
 
 from daten import speichern, laden
-from berechnungen import summe_der_aktivitaeten
-from index import rechnen
+from index import status
 
 
 app = Flask("Fitnesscoach!")
@@ -36,14 +36,26 @@ def termin():
     return render_template('termin.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
 
 
+
+
 @app.route('/bmi', methods=['POST','GET'])
-def rechnen():
+def rechner():
     bmi=''
+    berechnung=''
+    link=''
     if request.method == 'POST' and 'gewicht' in request.form and 'groesse' in request.form:
         gewicht=float(request.form.get('gewicht'))
         groesse=float(request.form.get('groesse'))
-        bmi= round(gewicht/(groesse * groesse),2)
-    return render_template("bmi.html", bmi=bmi,)
+        bmi = round(gewicht/(groesse * groesse),2)
+        berechnung=status(bmi)
+        link= print('plan1')
+    return render_template("bmi.html", bmi=bmi, berechnung=berechnung, link=link)
+
+@app.route('/plan1')
+def check():
+    titel_text = 'Wilkommen beim persönlichen Fitnesscoach'
+    einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
+    return render_template('termin.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
 
 
 
