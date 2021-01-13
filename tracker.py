@@ -1,8 +1,5 @@
 import json
-from typing import TextIO
-
-
-def speichern(uebung, gewicht, wiederholung):
+def speichern1(uebung, wiederholungen, gewicht):
 
     try:
         with open("tracker.json", "r") as datenbank:
@@ -10,11 +7,11 @@ def speichern(uebung, gewicht, wiederholung):
     except:
         eintraege = []
 
-    eintrag =(uebung, gewicht, wiederholung)
+    eintrag =(uebung, wiederholungen, gewicht)
 
     eintraege.append(eintrag)
 
     with open("tracker.json", "w") as datenbank:
         json.dump(eintraege, datenbank)
 
-    return uebung, gewicht, wiederholung
+    return uebung, wiederholungen, gewicht

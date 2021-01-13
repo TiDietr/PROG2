@@ -1,4 +1,3 @@
-from flask import redirect
 def status(bmi):
     if bmi < 18.5:
         return 'Du bist untergewichtig öffne diesen Link zu deinem Trainingsplan:'

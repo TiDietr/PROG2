@@ -5,6 +5,7 @@ from flask import redirect
 
 from daten import speichern, laden
 from index import status
+from tracker import speichern1
 
 
 app = Flask("Fitnesscoach!")
@@ -22,21 +23,21 @@ def start():
     return render_template('index.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
 
 
-@app.route('/tracker')
-def tracker():
+@app.route('/termin', methods=['POST','GET'])
+def eingabe_formular():
+    if request.method == 'POST':
+        ziel = request.form['ziel']
+        name = request.form['name']
+        telefon = request.form['telefon']
+        alter = request.form['alter']
+        gewicht = request.form['gewicht']
+        groesse = request.form['groesse']
+        zeit = request.form['zeit']
+        datum = request.form['datum']
 
-    titel_text = 'Wilkommen beim persönlichen Fitnesscoach'
-    einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
-    return render_template('tracker.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
-
-@app.route('/termin')
-def termin():
-    titel_text = 'Wilkommen beim persönlichen Fitnesscoach'
-    einleitungs_text = 'Hier finden Sie alles zum Thema Fitness'
-    return render_template('termin.html', app_name='Fitnesscoach', ueberschrift=titel_text, einleitung=einleitungs_text)
-
-
-
+        speichern(name, ziel,telefon,alter,groesse,gewicht, zeit, datum)
+        return redirect('/bestaetigung')
+    return render_template('termin.html')
 
 @app.route('/bmi', methods=['POST','GET'])
 def rechner():
@@ -61,17 +62,17 @@ def check():
 
 
 
-@app.route('/eingabe', methods=['POST', 'GET'])
-def eingabe_formular():
-        if request.method == 'POST':
-            aktivitaet = request.form['aktivitaet']
-            gewicht = request.form['gewicht']
-            wiederholung = request.form['wiederholung']
-            kategorie = request.form['kategorie']
-            antwort = speichern(aktivitaet, gewicht, wiederholung)
-            return 'Erfolgreiche Eingabe: <br>' + str(antwort)
+#@app.route('/eingabe', methods=['POST', 'GET'])
+#def eingabe_formular():
+ #       if request.method == 'POST':
+  #          aktivitaet = request.form['aktivitaet']
+   #         gewicht = request.form['gewicht']
+    #        wiederholung = request.form['wiederholung']
+     #       kategorie = request.form['kategorie']
+      #      antwort = speichern(aktivitaet, gewicht, wiederholung)
+       #     return 'Erfolgreiche Eingabe: <br>' + str(antwort)
 
-        return render_template('eingabe.html', app_name='Fitnesscoach! - Eingabe', kategorien=farben.keys)
+        #return render_template('eingabe.html', app_name='Fitnesscoach! - Eingabe', kategorien=farben.keys)
 
 
 @app.route('/liste')
@@ -87,6 +88,33 @@ def liste():
             daten=gespeicherten_eintraege,
             farben_dict=farben
         )
+@app.route('/bestaetigung', methods=['POST','GET'])
+def bestaetigung():
+    if request.method == "POST":
+        ziel = request.POSt['ziel']
+        name = request.POST['name']
+        telefon= request.POST['telefon']
+        alter= request.POST['alter']
+        gewicht= request.POST['gewicht']
+        groesse= request.POST['groesse']
+        zeit= request.POST['zeit']
+        datum= request.POST['datum']
+
+       # send_mail(
+
+        #)
+        return render( request, 'bestaetigung.html', {
+            'ziel' : ziel,
+            'name': name,
+            'telefon': telefon,
+            'alter': alter,
+            'gewicht': gewicht,
+            'groesse': groesse,
+            'zeit': zeit,
+            'datum': datum,
+                         })
+    else:
+        return render_template ( 'termin.html')
 
 
 @app.route('/liste/<termine>')
@@ -121,6 +149,24 @@ def analyse():
         einleitung=einleitungs_text,
         daten=analyse_ergebnis
     )
+
+@app.route('/tracker', methods=['POST','GET'])
+def tracker():
+    if request.method == 'POST':
+        uebung = request.form['uebung']
+        gewicht = request.form['gewicht']
+        wiederholungen = request.form['wiederholungen']
+
+        speichern1(uebung,gewicht, wiederholungen)
+        return redirect('/fortschritt')
+    return render_template('tracker.html')
+
+@app.route('/fortschritt')
+def liste():
+     laden()
+        return render_template(
+            'Fortschritt.html',
+        )
 
 
 if __name__ == "__main__":

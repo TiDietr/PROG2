@@ -85,15 +85,30 @@
 </header>
 
 <!-- Begin page content -->
-<main class="flex-shrink-0">
-  <br>
-  <br>
-  <br>
-  <br>
+<br>
+<br>
+<br>
+<br>
+<form method="POST" action=""> <!--Eingaben werden auf Server geladen mit Post-->
+  <div class="form-group"> <!--wie bereits oben beschrieben-->
+                        <label for="email">uebung</label>
+                            <input type="text" name="uebung"    class="form-control" id="subject" placeholder="uebung" required  />
+                    </div>
 
-  <img id="bild" src="Fitnessplan.jpg">
+<div class="form-group"> <!--wie bereits oben beschrieben-->
+                        <label for="email">Gewicht</label>
+                            <input type="text" name="gewicht"    class="form-control" id="subject" placeholder="Gewicht" required  />
+                    </div>
 
-</main>
+                    <div class="form-group">
+                        <label for="email">Wiederholungen</label>
+                            <input type="text" name="wiederholungen" class="form-control" placeholder="Wiederholungen" required>
+                    </div>
+
+                    <div class="col-md-6 offset-md-3 offset-lg-3 offset-xl-3 button">
+                                <button class="btn btn-primary btn-block" type="submit" name="submit" "style="margin-top: 20px;">Senden	<!--Senden-Button-->
+                                </button>
+                            </div>
 
 
 
