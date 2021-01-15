@@ -101,9 +101,9 @@
 
                 <h4>Persönliche Angaben</h4>
 
-                <form method="POST" action=""> <!--Eingaben werden auf Server geladen mit Post-->
+                <form method="POST" action="/bestaetigung"> <!--Eingaben werden auf Server geladen mit GET-->
                    <div class="form-group">	<!--CSS-->
-                        <label for="subject">ziel</label>  <!--Untertitel für Input-->
+                        <label for="subject">Ziel</label>  <!--Untertitel für Input-->
                             <select class="form-control" name="ziel" id=subject" required> <!--CSS, name "field1" wird benötigt, um auf die Daten per Flask zuzugreifen-->
                                 <option value selected>Wähle aus der Liste</option> <!--Drop down-->
                                 <option value="1">Fit bleiben</option> <!--Auswahlmöglichkeit-->

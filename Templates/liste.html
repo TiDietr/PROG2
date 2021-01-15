@@ -14,15 +14,19 @@
     <table class="table">
   <thead>
     <tr>
-      <th scope="col">Aktivitaet</th>
-      <th scope="col">Gewicht</th>
-      <th scope="col">Wiederholungen</th>
-        <th scope="col">Kategorie</th>
+      <th scope="col">Vor- und Nachname</th>
+        <th scope="col">Ziel</th>
+      <th scope="col">Mobiltelefon</th>
+      <th scope="col">Alter</th>
+        <th scope="col">Gewicht</th>
+         <th scope="col">Grösse</th>
+         <th scope="col">Zeit</th>
+         <th scope="col">Datum</th>
     </tr>
   </thead>
   <tbody>
   {% for eintrag in daten %}
-    <tr style="background-color:{{ farben_dict[eintrag[3]] }}">
+    <tr>
       <td><a href="{{ url_for('einzel_liste', aktivitaet=eintrag[0] ) }}"> {{ eintrag[0] }}</a></td>
       <td>{{ eintrag[1] }}</td>
       <td>{{ eintrag[2] }}</td>
