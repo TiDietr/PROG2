@@ -1,11 +1,17 @@
 from flask import Flask
 from flask import render_template
-from flask import request
+from flask import request, json, url_for
 from flask import redirect
+import os
+from flask import session
+
 
 from daten import speichern, laden
 from index import status
-from tracker import speichern1
+from tracker import save, tracken
+from berechnungen import summe_der_uebung
+from highscore import get_scores
+import json
 from views import bestaetigung
 
 from django.shortcuts import render
@@ -14,6 +20,8 @@ from django.shortcuts import render
 
 
 app = Flask("Fitnesscoach!")
+
+
 
 farben = {
     "Oberkoerper": "#FF0000",
@@ -71,17 +79,6 @@ def plan3():
 
 
 
-#@app.route('/eingabe', methods=['POST', 'GET'])
-#def eingabe_formular():
- #       if request.method == 'POST':
-  #          aktivitaet = request.form['aktivitaet']
-   #         gewicht = request.form['gewicht']
-    #        wiederholung = request.form['wiederholung']
-     #       kategorie = request.form['kategorie']
-      #      antwort = speichern(aktivitaet, gewicht, wiederholung)
-       #     return 'Erfolgreiche Eingabe: <br>' + str(antwort)
-
-        #return render_template('eingabe.html', app_name='Fitnesscoach! - Eingabe', kategorien=farben.keys)
 
 
 
@@ -95,74 +92,81 @@ def bestaetigung():
         gewicht= request.form.get('gewicht')
         groesse= request.form.get('groesse')
         zeit= request.form.get('zeit')
-        datum= request.form.get('datum')
+        tag= request.form.get('tag')
 
        # send_mail(
 
         #)
-        return render_template('bestaetigung.html' , zeil=ziel, name = name, telefon=telefon, alter=alter,gewicht=gewicht,groesse=groesse, zeit=zeit, datum=datum)
+        speichern(name, ziel,telefon,alter,groesse,gewicht, tag, zeit)
+        return render_template('bestaetigung.html' , zeil=ziel, name = name, telefon=telefon, alter=alter,gewicht=gewicht,groesse=groesse, zeit=zeit, tag=tag)
     else:
         return render_template('fehler.html')
 
 
 
 
-@app.route('/liste/<termine>')
-def einzel_liste(termin):
-    gespeicherten_eintraege = laden()
-    neue_liste =[]
-    for eintrag in gespeicherten_eintraege:
-        if eintrag [0] == termin:
-            neue_liste.append(eintrag)
-    titel_text = 'Liste der Termine:' + termin
-    einleitungs_text = 'Hier sind alle deine' +Termine +'Termine'
-    return render_template(
-        'liste.html',
-        app_name='Fitnessplan!',
-        ueberschrift=titel_text,
-        einleitung=einleitungs_text,
-        daten=neue_liste)
 
 
-
-
-@app.route('/analyse')
-def analyse():
-    gespeicherten_eintraege = laden()
-    analyse_ergebnis = summe_der_aktivitaeten(gespeicherten_eintraege)
-    titel_text = 'Analyse deiner Aktivitaeten'
-    einleitungs_text = 'Hier werden alle deine Aktivitaeten zusammengefasst angezeigt '
-    return render_template(
-        'analyse.html',
-        app_name='Fitnessplan!',
-        ueberschrift=titel_text,
-        einleitung=einleitungs_text,
-        daten=analyse_ergebnis
-    )
 
 @app.route('/tracker', methods=['POST','GET'])
 def tracker():
     if request.method == 'POST':
         uebung = request.form['uebung']
-        gewicht = request.form['gewicht']
+        gewicht = request.form['kilo']
         wiederholungen = request.form['wiederholungen']
 
-        speichern1(uebung,gewicht, wiederholungen)
-        return redirect('/fortschritt')
+        save(uebung,gewicht, wiederholungen)
+        return render_template('tracker1.html')
     return render_template('tracker.html')
 
-@app.route('/liste')
+@app.route('/trackermore', methods=['POST','GET'])
+def tracker1():
+    if request.method == 'POST':
+        uebung = request.form['uebung']
+        kilo = request.form['kilo']
+        wiederholungen = request.form['wiederholungen']
+
+        save(uebung, kilo, wiederholungen)
+        return render_template('tracker1.html')
+    return render_template('tracker1.html')
+
+@app.route('/tracking', methods=['POST','GET'])
 def liste():
-    gespeicherten_eintraege = laden()
-    ueberschrifts_text = 'Liste deiner Aktivitäten'
-    einleitung_text = 'Hier werden alle deine Aktivitäten die du aufgezeichnet hast angezeigt.'
-    return render_template(
-        'liste.html',
-        app_name="Tracker!",
-        ueberschrift=ueberschrifts_text,
-        einleitung=einleitung_text,
-        daten=gespeicherten_eintraege,
-    )
+    gespeicherten_eintraege= tracken()
+    return render_template('tracking.html',
+                           tracker=gespeicherten_eintraege)
+
+@app.route('/tracking/<uebung>')
+def einzel_liste(uebung):
+    gespeicherten_eintraege = tracken()
+
+    neue_liste = []
+    for eintrag in gespeicherten_eintraege:
+        if eintrag ['uebung'] == uebung:
+            neue_liste.append(eintrag)
+            return render_template('tracking.html', tracker=neue_liste)
+@app.route('/analyse')
+def analyse():
+    gespeicherten_eintraege= tracken()
+    analyse_ergebnis = summe_der_uebung(gespeicherten_eintraege)
+    return render_template('analyse.html', tracker=analyse_ergebnis)
+
+@app.route('/highscore')
+def highscores():
+
+    uebung_and_gewicht = get_scores()
+
+
+    return render_template("highscore.html", page_title="Highscores", highscore=uebung_and_gewicht)
+
+
+
+
+
+
+
+
+
 
 if __name__ == "__main__":
     app.run(debug=True, port=5000)

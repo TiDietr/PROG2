@@ -7,9 +7,9 @@
 <body>
     <h1>{{ ueberschrift }}</h1>
     <p> {{ einleitung }}</p>
-    {% for name, zeit in daten.items() %}
-        {{ name[0] }} mit {{ zeit[1] }} kg
-    <br>
+    {% for uebung, kilo in tracker.items() %}
+        {{ uebung }} mit {{ kilo }} kg
+<br>
     {% endfor %}
 </body>
 </html>

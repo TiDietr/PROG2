@@ -1,5 +1,7 @@
 import json
-def speichern1(uebung, wiederholungen, gewicht):
+from datetime import datetime
+
+def save(uebung, wiederholungen, kilo):
 
     try:
         with open("tracker.json", "r") as datenbank:
@@ -7,11 +9,27 @@ def speichern1(uebung, wiederholungen, gewicht):
     except:
         eintraege = []
 
-    eintrag =(uebung, wiederholungen, gewicht)
+    datum = str(datetime.now())
+    eintrag = {
+        'datum' : datum,
+        'uebung': uebung,
+        'kilo': kilo,
+        'wiederholungen' : wiederholungen
+    }
 
     eintraege.append(eintrag)
 
     with open("tracker.json", "w") as datenbank:
         json.dump(eintraege, datenbank)
 
-    return uebung, wiederholungen, gewicht
+    return uebung, wiederholungen, kilo
+
+def tracken():
+    try:
+        with open("tracker.json", "r") as datenbank:
+         eintraege = json.load(datenbank)
+    except:
+        print('Beim laden konnte keine vorhandene Datenbank gefunden werden')
+        eintraege = []
+
+    return eintraege

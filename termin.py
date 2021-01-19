@@ -1,5 +1,5 @@
 import json
-from typing import TextIO
+from typing import
 
 
 def speichern(name, adresse, termin):

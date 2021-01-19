@@ -1,8 +1,10 @@
-def summe_der_aktivitaeten(gespeicherten_eintraege):
+def summe_der_uebung(gespeicherten_eintraege):
     aktidict = {}
     for eintrag in gespeicherten_eintraege:
-        if not aktidict.get(eintrag[0]):
-            aktidict[eintrag [0]] = (eintrag [1]) = (eintrag [2])
+        if not aktidict.get(eintrag['uebung']):
+            aktidict[eintrag['uebung']] = float(eintrag['kilo'])
         else:
-            aktidict[eintrag [0]] += (eintrag [1])
-    return aktidict
+            aktidict[eintrag['uebung']] += float(eintrag['kilo'])
+        return aktidict
+
+
