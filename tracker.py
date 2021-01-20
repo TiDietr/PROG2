@@ -9,9 +9,9 @@ def save(uebung, wiederholungen, kilo):
     except:
         eintraege = []
 
-    datum = str(datetime.now())
+    datum = datetime.today().strftime('%Y-%m-%d')
     eintrag = {
-        'datum' : datum,
+        'datum': datum,
         'uebung': uebung,
         'kilo': kilo,
         'wiederholungen' : wiederholungen

@@ -1,15 +1,14 @@
 
 <!doctype html>
-<html lang="en" class="h-100">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>Sticky Footer Navbar Template · Bootstrap v5.0</title>
+    <title> Fitnesscoach</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
-      <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css') }}">
-
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+ <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css') }}/">
 
 
     <!-- Bootstrap core CSS -->
@@ -26,14 +25,7 @@
 
 
     <style>
-    .bild {
-        float: center-align;
-        width: 234 px;
-        height: 123 px;
-        margin-left; 20 px
-        }
-
-      .img {
+      .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
         -webkit-user-select: none;
@@ -46,39 +38,33 @@
           font-size: 3.5rem;
         }
       }
-
     </style>
 
 
     <!-- Custom styles for this template -->
-    <link href="sticky-footer-navbar.css" rel="stylesheet">
+    <link href="carousel.css" rel="stylesheet">
   </head>
-  <body class="d-flex flex-column h-100">
+  <body>
 
 <header>
-  <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Fixed navbar</a>
+      <a class="navbar-brand" href="#">Fitnesscoach</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
+            <a class="nav-link" aria-current="page" href="/termin">Termin</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="/bmi">BMI</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link" href="/tracker" tabindex="-1">Tracker</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
       </div>
     </div>
   </nav>
@@ -90,10 +76,38 @@
 <br>
 <br>
 <form method="POST" action=""> <!--Eingaben werden auf Server geladen mit Post-->
-  <div class="form-group"> <!--wie bereits oben beschrieben-->
-                        <label for="email">uebung</label>
-                            <input type="text" name="uebung"    class="form-control" id="subject" placeholder="uebung" required  />
+                        <label for="subject">uebung</label>
+                        <select name="uebung" class="form-control" id="uebung" placeholder="uebung auswaehlen?" required>
+                            <option value selected>Wähle aus der Liste</option>
+                            <option value="Bankdruecken">Bankdrücken</option>
+                             <option value="Butterfly">Butterfly</option>
+                             <option value="Fiegende KH">Fliegende KH</option>
+                             <option value="Kniebeuger">Kniebeugen</option>
+                             <option value="Beinbeuger">Beinbeuger</option>
+                             <option value="Beinstrecker">Beinstrecker</option>
+                            <option value="Wadenheben">Wadenheben</option>
+                            <option value="Curls">Curls</option>
+                            <option value="Scottcurls">Scottcurls</option>
+                             <option value="Beinheben">Beinheben</option>
+                             <option value="Crunches">Crunches</option>
+                             <option value="Latzug breit">Latzug breit</option>
+                             <option value="Latzug eng">Latzug eng</option>
+                             <option value="Rudern">Rudern</option>
+                            <option value="Military Press">Military Press</option>
+                            <option value="Frontheben">Frontheben</option>
+                            <option value="Seitheben">Seitheben</option>
+                             <option value="French Press">French Press</option>
+                             <option value="Trizeps">Trizeps</option>
+                             <option value="Shrugs">Shrugs</option>
+                             <option value="Klimzuege">Klimzüge</option>
+                            <option value="Bizeps">Bizeps</option>
+                            <option value="Deadlift">Deadlift</option>
+
+
+                        </select>
                     </div>
+<!--wie bereits oben beschrieben-->
+
 
 <div class="form-group"> <!--wie bereits oben beschrieben-->
                         <label for="email">Gewicht</label>
@@ -109,6 +123,10 @@
                                 <button class="btn btn-primary btn-block" type="submit" name="submit" "style="margin-top: 20px;">Senden	<!--Senden-Button-->
                                 </button>
                             </div>
+
+
+
+
 
 
 

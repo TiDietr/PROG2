@@ -1,17 +1,14 @@
 
 <!doctype html>
-<html lang="en" class="h-100">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.79.0">
-    <title>Sticky Footer Navbar Template · Bootstrap v5.0</title>
+    <title> Fitnesscoach</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
-      <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css') }}">
-
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+ <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css') }}/">
 
 
     <!-- Bootstrap core CSS -->
@@ -42,38 +39,32 @@
         }
       }
     </style>
-      <link rel="stylesheet" href="https://unpkg.com/purecss@0.6.2/build/pure-min.css" integrity="sha384-UQiGfs9ICog+LwheBSRCt1o5cbyKIHbwjWscjemyBMT9YCUMZffs6UqUTd0hObXD" crossorigin="anonymous">
 
 
     <!-- Custom styles for this template -->
-    <link href="sticky-footer-navbar.css" rel="stylesheet">
+    <link href="carousel.css" rel="stylesheet">
   </head>
-  <body class="d-flex flex-column h-100">
+  <body>
 
 <header>
-  <!-- Fixed navbar -->
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container-fluid">
-      <a class="navbar-brand" href="#">Fixed navbar</a>
+      <a class="navbar-brand" href="#">Fitnesscoach</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarCollapse">
         <ul class="navbar-nav me-auto mb-2 mb-md-0">
           <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="#">Home</a>
+            <a class="nav-link" aria-current="page" href="/termin">Termin</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#">Link</a>
+            <a class="nav-link" href="/bmi">BMI</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
+            <a class="nav-link" href="/tracker" tabindex="-1">Tracker</a>
           </li>
         </ul>
-        <form class="d-flex">
-          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-          <button class="btn btn-outline-success" type="submit">Search</button>
-        </form>
       </div>
     </div>
   </nav>
@@ -84,13 +75,19 @@
 <br>
 <br>
 
-<div class="main">
+<center><div class="main">
 	<form class="pure-form" method="POST" action="/bmi">
 	Gewicht in Kg:<br>
 	<input type="text" name="gewicht"><br>
 	Grösse in m:<br>
 	<input type="text" name="groesse"><br>
-	<button type="submit" class="pure-button pure-button-primary" value="Submit">BMI Berechnen</button>
+        <br>
+        <br>
+        <br>
+	<align-center><div class="col-md-6 offset-md-3 offset-lg-3 offset-xl-3 button">
+                                <button class="btn btn-primary btn-block" type="submit" name="submit">BMI berechnen	<!--Senden-Button-->
+                                </button>
+                            </div></align-center>
 	</form>
 </div>
 
@@ -101,17 +98,17 @@
         <br>
 
         </p>
-    </div>
+    </div></center>
 
 <br>
 <br>
 
-<p>Wenn du Übergewichtig bist öffne diesen Link: <a href="/plan1">übergewicht</a> </p>
+<p>Wenn du untergewichtig bist öffne diesen Trainingsplan: <a href="https://www.meinefitness.net/wp-content/uploads/Trainingsplan-Ganzk%C3%B6rper-MeineFitness.net-1.pdf">Untergewichtig</a> </p>
+<br>
+<p>Wenn du normalgewichtig bist öffne diesen Trainingplan: <a href="https://www.meinefitness.net/wp-content/uploads/Crossfit-Trainingsplan-MeineFitness.net_.pdf">Normalgewichtig</a> </p>
+<br>
+<p>Wenn du übergewichtig bist öffne diesen Trainingsplan: <a href="https://www.meinefitness.net/wp-content/uploads/Abnehmen-Trainingsplan-MeineFitness.net_.pdf">Übergewichtig</a> </p>
 
-<br>
-<p>Wenn du Übergewichtig bist öffne diesen Link: <a href="/plan2">übergewicht</a> </p>
-<br>
-<p>Wenn du Übergewichtig bist öffne diesen Link: <a href="/plan3">übergewicht</a> </p>
 
 
 

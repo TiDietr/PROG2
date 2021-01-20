@@ -1,18 +1,17 @@
 from flask import Flask
 from flask import render_template
-from flask import request, json, url_for
+from flask import request, url_for,g
 from flask import redirect
-import os
 from flask import session
 
 
-from daten import speichern, laden
+from termin import speichern, laden
 from index import status
 from tracker import save, tracken
 from berechnungen import summe_der_uebung
-from highscore import get_scores
+import os
 import json
-from views import bestaetigung
+
 
 from django.shortcuts import render
 
@@ -20,14 +19,12 @@ from django.shortcuts import render
 
 
 app = Flask("Fitnesscoach!")
+app.config['SESSION_TYPE'] = 'memcached'
+app.config['SECRET_KEY'] = 'super secret key'
 
 
 
-farben = {
-    "Oberkoerper": "#FF0000",
-    "Beine": "#0000FF",
-    "Ganzkoerper": "#CCEEFF"
-}
+
 
 @app.route('/')
 def start():
@@ -92,13 +89,11 @@ def bestaetigung():
         gewicht= request.form.get('gewicht')
         groesse= request.form.get('groesse')
         zeit= request.form.get('zeit')
-        tag= request.form.get('tag')
+        datum= request.form.get('datum')
 
-       # send_mail(
 
-        #)
-        speichern(name, ziel,telefon,alter,groesse,gewicht, tag, zeit)
-        return render_template('bestaetigung.html' , zeil=ziel, name = name, telefon=telefon, alter=alter,gewicht=gewicht,groesse=groesse, zeit=zeit, tag=tag)
+        speichern(name, ziel,telefon,alter,groesse,gewicht, datum, zeit)
+        return render_template('bestaetigung.html' , ziel=ziel, name = name, telefon=telefon, alter=alter,gewicht=gewicht,groesse=groesse, zeit=zeit, datum=datum)
     else:
         return render_template('fehler.html')
 
@@ -139,8 +134,7 @@ def liste():
 @app.route('/tracking/<uebung>')
 def einzel_liste(uebung):
     gespeicherten_eintraege = tracken()
-
-    neue_liste = []
+    neue_liste = ['uebung']
     for eintrag in gespeicherten_eintraege:
         if eintrag ['uebung'] == uebung:
             neue_liste.append(eintrag)
@@ -151,21 +145,35 @@ def analyse():
     analyse_ergebnis = summe_der_uebung(gespeicherten_eintraege)
     return render_template('analyse.html', tracker=analyse_ergebnis)
 
-@app.route('/highscore')
-def highscores():
-
-    uebung_and_gewicht = get_scores()
 
 
-    return render_template("highscore.html", page_title="Highscores", highscore=uebung_and_gewicht)
+@app.route('/terminliste', methods=['POST','GET'])
+def terminliste():
+    gespeicherten_eintraege= laden()
+    return render_template('terminliste.html',
+                           termin=gespeicherten_eintraege)
+
+@app.route('/terminliste/<name>')
+def einzel_liste2(name):
+    gespeicherten_eintraege = laden()
+
+    neue_liste2 = []
+    for eintrag in gespeicherten_eintraege:
+        if eintrag['name'] == name:
+            neue_liste2.append(eintrag)
+            return render_template('terminliste.html', termin=neue_liste2)
 
 
+@app.route('/login', methods=['GET', 'POST'])
+def index():
+    if request.method == 'POST':
+        session.pop('user', None)
 
+        if request.form['password'] == 'password':
+            session['user'] = request.form['username']
+            return redirect(url_for('terminliste'))
 
-
-
-
-
+    return render_template('login.html')
 
 
 if __name__ == "__main__":

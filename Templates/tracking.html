@@ -1,14 +1,14 @@
+
 <!doctype html>
-<html lang="en" class="h-100">
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="">
-    <title>Sticky Footer Navbar Template · Bootstrap v5.0</title>
+    <title> Fitnesscoach</title>
 
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/sticky-footer-navbar/">
-      <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css') }}">
-
+    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
+ <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css') }}/">
 
 
     <!-- Bootstrap core CSS -->
@@ -25,14 +25,7 @@
 
 
     <style>
-    .bild {
-        float: center-align;
-        width: 234 px;
-        height: 123 px;
-        margin-left; 20 px
-        }
-
-      .img {
+      .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;
         -webkit-user-select: none;
@@ -45,23 +38,48 @@
           font-size: 3.5rem;
         }
       }
-
     </style>
 
 
     <!-- Custom styles for this template -->
-    <link href="sticky-footer-navbar.css" rel="stylesheet">
-</head>
+    <link href="carousel.css" rel="stylesheet">
+  </head>
+  <body>
+
+<header>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Fitnesscoach</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarCollapse">
+        <ul class="navbar-nav me-auto mb-2 mb-md-0">
+          <li class="nav-item active">
+            <a class="nav-link" aria-current="page" href="/termin">Termin</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/bmi">BMI</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/tracker" tabindex="-1">Tracker</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+</header>
 <body>
  <main role="main" class="container">
 
     <table class="table">
   <thead>
     <tr>
+        <th scope="col">datum</th>
       <th scope="col">uebung</th>
         <th scope="col">gewicht</th>
       <th scope="col">wiederholungen</th>
-        <th scope="col">datum</th>
+
 
     </tr>
   </thead>
@@ -69,10 +87,11 @@
   {% for eintrag in tracker %}
 
   <tr style="">
+      <td>{{ eintrag['datum'] }}  </td>
        <td><a href="{{url_for('einzel_liste', uebung=eintrag['uebung'] ) }}">{{ eintrag['uebung'] }}</a> </td>
           <td>{{ eintrag['kilo'] }}</td>
           <td>{{ eintrag['wiederholungen'] }}</td>
-          <td>{{ eintrag['datum'] }}</td>
+
 
 
         </tr>
