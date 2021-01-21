@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-def speichern(name, ziel,telefon,alter,groesse,gewicht, datum, zeit):
+def speichern(name, ziel,telefon,alter,groesse,gewicht, zeit, daten):
 
     try:
         with open("termin.json", "r") as datenbank:
@@ -10,14 +10,14 @@ def speichern(name, ziel,telefon,alter,groesse,gewicht, datum, zeit):
         eintraege = []
 
     eintrag = {
-        'datum': datum,
         'zeit': zeit,
         'ziel': ziel,
         'name': name,
         'telefon': telefon,
         'alter': alter,
         'groesse': groesse,
-        'gewicht': gewicht
+        'gewicht': gewicht,
+        'daten': daten,
 
     }
 
@@ -26,7 +26,7 @@ def speichern(name, ziel,telefon,alter,groesse,gewicht, datum, zeit):
     with open("termin.json", "w") as datenbank:
         json.dump(eintraege, datenbank)
 
-    return name, ziel,telefon,alter,groesse,gewicht, datum, zeit
+    return name, ziel,telefon,alter,groesse,gewicht, daten, zeit
 
 
 def laden():

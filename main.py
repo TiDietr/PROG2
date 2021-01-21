@@ -9,11 +9,9 @@ from termin import speichern, laden
 from index import status
 from tracker import save, tracken
 from berechnungen import summe_der_uebung
-import os
-import json
 
 
-from django.shortcuts import render
+
 
 
 
@@ -21,8 +19,6 @@ from django.shortcuts import render
 app = Flask("Fitnesscoach!")
 app.config['SESSION_TYPE'] = 'memcached'
 app.config['SECRET_KEY'] = 'super secret key'
-
-
 
 
 
@@ -43,9 +39,9 @@ def eingabe_formular():
         gewicht = request.form['gewicht']
         groesse = request.form['groesse']
         zeit = request.form['zeit']
-        datum = request.form['datum']
+        daten = request.form['daten']
 
-        speichern(name, ziel,telefon,alter,groesse,gewicht, zeit, datum)
+        speichern(name, ziel,telefon,alter,groesse,gewicht, zeit,daten)
         return redirect('/bestaetigung')
     return render_template('termin.html')
 
@@ -61,27 +57,11 @@ def rechner():
 
     return render_template("bmi.html", bmi=bmi, berechnung=berechnung)
 
-@app.route('/plan1')
-def plan1():
-    return render_template("plan1.html")
-
-@app.route('/plan2')
-def plan2():
-    return render_template("plan2.html")
-
-@app.route('/plan3')
-def plan3():
-    return render_template("plan3.html")
-
-
-
-
-
 
 
 @app.route('/bestaetigung', methods=['POST','GET'])
 def bestaetigung():
-    if request.method == 'POST' and 'ziel' in request.form and 'name' in request.form and 'telefon' in request.form and 'alter' in request.form and 'gewicht' in request.form and 'groesse' in request.form and 'zeit' in request.form and 'datum' in request.form:
+    if request.method == 'POST' and 'ziel' in request.form and 'name' in request.form and 'telefon' in request.form and 'alter' in request.form and 'gewicht' in request.form and 'groesse' in request.form and 'zeit' in request.form and 'daten' in request.form:
         ziel = request.form.get('ziel')
         name = request.form.get('name')
         telefon= request.form.get('telefon')
@@ -89,11 +69,11 @@ def bestaetigung():
         gewicht= request.form.get('gewicht')
         groesse= request.form.get('groesse')
         zeit= request.form.get('zeit')
-        datum= request.form.get('datum')
+        daten= request.form.get('daten')
 
 
-        speichern(name, ziel,telefon,alter,groesse,gewicht, datum, zeit)
-        return render_template('bestaetigung.html' , ziel=ziel, name = name, telefon=telefon, alter=alter,gewicht=gewicht,groesse=groesse, zeit=zeit, datum=datum)
+        speichern(name, ziel,telefon,alter,groesse,gewicht, zeit, daten)
+        return render_template('bestaetigung.html' , ziel=ziel, name = name, telefon=telefon, alter=alter,gewicht=gewicht,groesse=groesse, zeit=zeit, daten=daten)
     else:
         return render_template('fehler.html')
 
@@ -174,6 +154,9 @@ def index():
             return redirect(url_for('terminliste'))
 
     return render_template('login.html')
+
+
+
 
 
 if __name__ == "__main__":

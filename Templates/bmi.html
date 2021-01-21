@@ -1,86 +1,23 @@
-
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <title> Fitnesscoach</title>
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.0/examples/carousel/">
- <link rel="stylesheet" href="{{ url_for('static', filename='bootstrap-5.0.0-beta1-dist/css/bootstrap.min.css') }}/">
-
-
-    <!-- Bootstrap core CSS -->
-<link href="/docs/5.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
-
-    <!-- Favicons -->
-<link rel="apple-touch-icon" href="/docs/5.0/assets/img/favicons/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="manifest" href="/docs/5.0/assets/img/favicons/manifest.json">
-<link rel="mask-icon" href="/docs/5.0/assets/img/favicons/safari-pinned-tab.svg" color="#7952b3">
-<link rel="icon" href="/docs/5.0/assets/img/favicons/favicon.ico">
-<meta name="theme-color" content="#7952b3">
-
-
-    <style>
-      .bd-placeholder-img {
-        font-size: 1.125rem;
-        text-anchor: middle;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        user-select: none;
-      }
-
-      @media (min-width: 768px) {
-        .bd-placeholder-img-lg {
-          font-size: 3.5rem;
-        }
-      }
-    </style>
-
-
-    <!-- Custom styles for this template -->
-    <link href="carousel.css" rel="stylesheet">
-  </head>
-  <body>
-
-<header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <div class="container-fluid">
-      <a class="navbar-brand" href="#">Fitnesscoach</a>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarCollapse">
-        <ul class="navbar-nav me-auto mb-2 mb-md-0">
-          <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="/termin">Termin</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/bmi">BMI</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/tracker" tabindex="-1">Tracker</a>
-          </li>
-        </ul>
-      </div>
-    </div>
-  </nav>
-</header>
+{% include "head.html" %}
 
 <!-- Begin page content -->
 <br>
 <br>
 <br>
+<div class="text-center">
+                    <h1>Wilkommen beim BMI-Rechner</h1> <!--Text (Titel) -->
+                </div>
+<center><h4>Berechne deinen BMI und starte mit dem für dich passenden Trainingsplan</h4>
+                    <p> BMI unter 18.5 = Untergewichtig</p>
+                    <p> BMI zwischen 18.5 und 25 = Normalgewichtig</p>
+                    <p> BMI über 25 = Übergewichtig</p></center>
 
 <center><div class="main">
 	<form class="pure-form" method="POST" action="/bmi">
-	Gewicht in Kg:<br>
+        <h3>Gewicht in Kg:</h3><br>
 	<input type="text" name="gewicht"><br>
-	Grösse in m:<br>
-	<input type="text" name="groesse"><br>
+	<h3>Grösse in m:</h3><br>
+	<input type="text" name="groesse"><br><center></center>
         <br>
         <br>
         <br>
@@ -91,8 +28,12 @@
 	</form>
 </div>
 
-<div class="result">
-        <h1>{{ bmi }} </h1>
+    <br>
+    <br>
+    <br>
+
+<center><div class="result">
+    <b> <h1>{{ bmi }} </h1></b>
         <p><span class="span">{{ berechnung }} </span>
 
         <br>
@@ -100,14 +41,23 @@
         </p>
     </div></center>
 
-<br>
-<br>
 
-<p>Wenn du untergewichtig bist öffne diesen Trainingsplan: <a href="https://www.meinefitness.net/wp-content/uploads/Trainingsplan-Ganzk%C3%B6rper-MeineFitness.net-1.pdf">Untergewichtig</a> </p>
-<br>
-<p>Wenn du normalgewichtig bist öffne diesen Trainingplan: <a href="https://www.meinefitness.net/wp-content/uploads/Crossfit-Trainingsplan-MeineFitness.net_.pdf">Normalgewichtig</a> </p>
-<br>
-<p>Wenn du übergewichtig bist öffne diesen Trainingsplan: <a href="https://www.meinefitness.net/wp-content/uploads/Abnehmen-Trainingsplan-MeineFitness.net_.pdf">Übergewichtig</a> </p>
+<section class="border-bottom" style="padding-top: 100px; padding-bottom: 50px"> <!--CSS-->
+        <div class="container">
+            <div class="row">
+                <div class="col-sm">
+                    <div class="card">
+                        <div class="card-body" style="text-align: center">	<!--Info Angaben-->
+                            <p class="card-text">Wenn du untergewichtig bist öffne diesen Trainingsplan: <a href="https://www.meinefitness.net/wp-content/uploads/Trainingsplan-Ganzk%C3%B6rper-MeineFitness.net-1.pdf">Untergewichtig</a></p>
+                            <p class="card-text">Wenn du normalgewichtig bist öffne diesen Trainingplan: <a href="https://www.meinefitness.net/wp-content/uploads/Crossfit-Trainingsplan-MeineFitness.net_.pdf">Normalgewichtig</a></p>
+                            <p class="card-text">Wenn du übergewichtig bist öffne diesen Trainingsplan: <a href="https://www.meinefitness.net/wp-content/uploads/Abnehmen-Trainingsplan-MeineFitness.net_.pdf">Übergewichtig</a></>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
 
 
 
@@ -122,5 +72,5 @@
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="{{ url_for ('static', filename='bootstrap-5.0.0-beta1-dist/js/bootstrap.min.js' )}}"></script>
 
-  </body>
-</html>
+
+{% include "about.html" %}
