@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-def speichern(name, ziel,telefon,alter,groesse,gewicht, zeit, daten):
+def speichern(name, ziel,telefon,alter,groesse,gewicht, zeit, daten): #speichern für json
 
     try:
         with open("termin.json", "r") as datenbank:
@@ -29,7 +29,7 @@ def speichern(name, ziel,telefon,alter,groesse,gewicht, zeit, daten):
     return name, ziel,telefon,alter,groesse,gewicht, daten, zeit
 
 
-def laden():
+def laden(): #laden von json für andere Seite
     try:
         with open("termin.json", "r") as datenbank:
          eintraege = json.load(datenbank)

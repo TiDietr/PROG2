@@ -1,7 +1,7 @@
 import json
 from datetime import datetime
 
-def save(uebung, wiederholungen, kilo):
+def save(uebung, wiederholungen, kilo): #speichern für json
 
     try:
         with open("tracker.json", "r") as datenbank:
@@ -24,7 +24,7 @@ def save(uebung, wiederholungen, kilo):
 
     return uebung, wiederholungen, kilo
 
-def tracken():
+def tracken(): #laden von json für ander Seite
     try:
         with open("tracker.json", "r") as datenbank:
          eintraege = json.load(datenbank)

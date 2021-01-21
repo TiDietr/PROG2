@@ -8,3 +8,5 @@ def summe_der_uebung(gespeicherten_eintraege):
         return aktidict
 
 
+
+

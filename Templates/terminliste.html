@@ -1,15 +1,19 @@
 {% include "head.html" %}
-
+<style>
+body {
+  background-image: url('https://images.unsplash.com/photo-1521805103424-d8f8430e8933?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80');
+}
+</style>
 <br><br><br><br>
 <body>
 
-<center><h2>Hier findest du die Terminanfragen der interessierten Kunden</h2></center>
+<center><h2 style="color: white">Hier findest du die Terminanfragen der interessierten Kunden</h2></center>
 <br>
-<center><h3>Leads zur Kontaktaufnahme</h3></center>
+<center><h3 style="color: white">Leads zur Kontaktaufnahme</h3></center>
     <main role="main" class="container">
 
-    <table class="table">
-      <thead>
+    <table class="table" style="color: white">
+      <thead><!--Tabelle gleich wie liste.html-->
         <tr>
           <th scope="col">Datum</th>
           <th scope="col">Zeit</th>
@@ -22,9 +26,9 @@
         </tr>
       </thead>
       <tbody>
-        {% for eintrag in termin %}
+        {% for eintrag in termin %} <!--Eingaben in dict eintrag aus termin.json-->
         <tr style="">
-            <td>{{ eintrag['daten'] }}</td>
+            <td>{{ eintrag['daten'] }}</td> <!--Ausgabe der Daten für dict eintrag 'datum'-->
             <td>{{ eintrag['zeit'] }}</td>
           <td><a href="{{ url_for('einzel_liste2', name=eintrag['name'] ) }}">{{ eintrag['name'] }}</a></td>
           <td>{{ eintrag['ziel'] }}</td>

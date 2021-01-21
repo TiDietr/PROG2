@@ -1,22 +1,26 @@
 {% include "head.html" %}
 
+<style>
+body {
+  background-image: url('https://images.unsplash.com/photo-1434682772747-f16d3ea162c3?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1353&q=80');
+}
+</style>
 <!-- Begin page content -->
-<br>
-<br>
+
 <br>
 <div class="text-center">
-                    <h1>Wilkommen beim BMI-Rechner</h1> <!--Text (Titel) -->
+                    <h1 style="color: white">Wilkommen beim BMI-Rechner</h1> <!--Text (Titel) -->
                 </div>
-<center><h4>Berechne deinen BMI und starte mit dem für dich passenden Trainingsplan</h4>
-                    <p> BMI unter 18.5 = Untergewichtig</p>
-                    <p> BMI zwischen 18.5 und 25 = Normalgewichtig</p>
-                    <p> BMI über 25 = Übergewichtig</p></center>
+<center><h4 style="color: white">Berechne deinen BMI und starte mit dem für dich passenden Trainingsplan</h4>
+                    <p style="color: white"> BMI unter 18.5 = Untergewichtig</p>
+                    <p style="color: white"> BMI zwischen 18.5 und 25 = Normalgewichtig</p>
+                    <p style="color: white"> BMI über 25 = Übergewichtig</p></center>
 
 <center><div class="main">
 	<form class="pure-form" method="POST" action="/bmi">
-        <h3>Gewicht in Kg:</h3><br>
+        <h3 style="color: white">Gewicht in Kg:</h3><br>
 	<input type="text" name="gewicht"><br>
-	<h3>Grösse in m:</h3><br>
+	<h3 style="color: white">Grösse in m:</h3><br>
 	<input type="text" name="groesse"><br><center></center>
         <br>
         <br>
@@ -33,10 +37,8 @@
     <br>
 
 <center><div class="result">
-    <b> <h1>{{ bmi }} </h1></b>
-        <p><span class="span">{{ berechnung }} </span>
-
-        <br>
+    <b> <h1 style="color: white">{{ bmi }} </h1></b> <!--Resultat der berechnung von index.py-->
+        <p style="color: white"><span class="span">{{ berechnung }} </span> <!--Wiedergabe des Textes, je nach Resultat-->
 
         </p>
     </div></center>
@@ -47,7 +49,7 @@
             <div class="row">
                 <div class="col-sm">
                     <div class="card">
-                        <div class="card-body" style="text-align: center">	<!--Info Angaben-->
+                        <div class="card-body" style="text-align: center">	<!--Links zu den Trainingsplänen-->
                             <p class="card-text">Wenn du untergewichtig bist öffne diesen Trainingsplan: <a href="https://www.meinefitness.net/wp-content/uploads/Trainingsplan-Ganzk%C3%B6rper-MeineFitness.net-1.pdf">Untergewichtig</a></p>
                             <p class="card-text">Wenn du normalgewichtig bist öffne diesen Trainingplan: <a href="https://www.meinefitness.net/wp-content/uploads/Crossfit-Trainingsplan-MeineFitness.net_.pdf">Normalgewichtig</a></p>
                             <p class="card-text">Wenn du übergewichtig bist öffne diesen Trainingsplan: <a href="https://www.meinefitness.net/wp-content/uploads/Abnehmen-Trainingsplan-MeineFitness.net_.pdf">Übergewichtig</a></>

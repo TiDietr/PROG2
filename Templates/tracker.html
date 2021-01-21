@@ -1,13 +1,20 @@
 {% include "head.html" %}
 
+<style>
+body {
+  background-image: url('https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+</style>
+
 <!-- Begin page content -->
 <br>
 <br>
+
+<center><h1 style="color: white">Heute schon trainiert? Hier kannst du dein Workout tracken!</h1></center>
 <br>
 <br>
-<form method="POST" action=""> <!--Eingaben werden auf Server geladen mit Post-->
-                        <label for="subject"><b>Übung</b></label>
-    <br>
+<form method="POST" action="">  <!--gleiche Seite wie tracker.html, ermöglichst weitere Eingaben aber Funktion ist gleich-->
+    <label for="subject" style="color: white"><b>Übung</b></label>
                         <select name="uebung" class="form-control" id="uebung" placeholder="uebung auswaehlen?" required>
                             <option value selected>Wähle aus der Liste</option>
                             <option value="Bankdruecken">Bankdrücken</option>
@@ -50,27 +57,25 @@
 
 
                         </select>
-                    </div>
-<!--wie bereits oben beschrieben-->
-<br><br>
+                    </div><!--Eingaben werden auf Server geladen mit Post-->
 
-<div class="form-group"> <!--wie bereits oben beschrieben-->
-                        <label for="email"><b>Gewicht</b></label>
-    <br>
+
+<div class="form-group">
+                        <label for="email" style="color: white"><b>Gewicht</b></label>
                             <input type="text" name="kilo"    class="form-control" id="subject" placeholder="Gewicht" required  />
                     </div>
-<br><br>
+
                     <div class="form-group">
-                        <label for="email"><b>Wiederholungen</b></label>
-                        <br>
+                        <label for="email" style="color: white"><b>Wiederholungen</b></label>
                             <input type="text" name="wiederholungen" class="form-control" placeholder="Wiederholungen" required>
                     </div>
-<br><br>
+
                     <div class="col-md-6 offset-md-3 offset-lg-3 offset-xl-3 button">
-                                <button class="btn btn-primary btn-block" type="submit" name="submit" "style="margin-top: 20px;" >Senden	<!--Senden-Button-->
+                                <button class="btn btn-primary btn-block" type="submit" name="submit" "style="margin-top: 20px;">Senden	<!--Senden-Button-->
                                 </button>
                             </div>
 
+<br><br>
 
 
 

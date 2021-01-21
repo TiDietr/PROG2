@@ -2,8 +2,8 @@
 <body>
     <main role="main" class="container">
 
-    <table class="table">
-  <thead>
+    <table class="table"style="color: white"> <!--Tabelle aus Daten von termin.json-->
+  <thead> <!--Tabellentitel-->
     <tr>
       <th scope="col">Vor- und Nachname</th>
         <th scope="col">Ziel</th>
@@ -16,7 +16,7 @@
     </tr>
   </thead>
         <br>
-  <tbody>   <tr style="">
+  <tbody>   <tr style=""> <!--Ausgabe der im Formular eingegebenen Daten-->
           <td>{{ ['name'] }}</td>
           <td>{{ ['ziel'] }}</td>
           <td>{{ ['telefon'] }}</td>
@@ -35,6 +35,6 @@
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
     <script src="{{ url_for ('static', filename='bootstrap-5.0.0-beta1-dist/js/bootstrap.min.js' )}}"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
-    <!-- <script src="{{ url_for ('static', filename='bootstrap-5.0.0-beta1-dist/js/bootstrap.min.js' )}}"></script> -->
+    <script src="{{ url_for ('static', filename='bootstrap-5.0.0-beta1-dist/js/bootstrap.min.js' )}}"></script>
 
 {% include "about.html" %}

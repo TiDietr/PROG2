@@ -1,19 +1,23 @@
 {% include "head.html" %}
 <br><br><br><br>
-
+<style>
+body {
+  background-image: url('https://images.unsplash.com/photo-1521805103424-d8f8430e8933?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1350&q=80');
+}
+</style>
 <body>
 <div>
-<center><h3> Deine Anfrage ist bei uns eingegangen. Wir werden dich in kürze kontaktieren.</h3></center>
+<center><h3 style="color: white"> Deine Anfrage ist bei uns eingegangen. Wir werden dich in kürze kontaktieren.</h3></center>
  <br><br><br>
     <section class="border-bottom" style="padding-top: 100px; padding-bottom: 50px"> <!--CSS-->
         <div class="container">
             <div class="row">
                 <div class="col-sm">
                     <div class="card">
-                        <div class="card-body" style="text-align: center">	<!--Info Angaben-->
+                        <div class="card-body" style="text-align: center">	<!--Wiedergabe der Eingaben von termin.html-->
                             <h5 class="card-text">Name: {{name}}</h5>
                             <p class="card-text"> Wunschdatum: {{daten}}</p>
-                            <p class="card-text">Zeit: {{zeit}}</p><p class="card-text">tino.dietrich@stud.fhgr.ch</p>
+                            <p class="card-text">Zeit: {{zeit}}</p>
                             <p class="card-text">Deine Telefonnummer: {{telefon}}</p>
                             <p class="card-text">Dein Alter: {{alter}}</p>
                             <p class="card-text">Dein Gewicht: {{gewicht}}</p>
@@ -27,6 +31,8 @@
 <br>
 
 <center><a class="btn btn-secondary" href="/" role="button">Zurück zur Startseite &raquo;</a></p></center>
+<br>
+<br>
 
  <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>

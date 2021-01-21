@@ -1,18 +1,23 @@
 {% include "head.html" %}
+<style>
+body {
+  background-image: url('https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+</style>
 <br>
 <br>
 <br>
 
 <body>
- <main role="main" class="container">
+ <main role="main" class="container">  <!--Liste zum Tracken der Eingaben aus tracker.html-->
 
-    <table class="table">
+    <table class="table" style="color: white">
   <thead>
     <tr>
-        <th scope="col">datum</th>
-      <th scope="col">uebung</th>
-        <th scope="col">gewicht</th>
-      <th scope="col">wiederholungen</th>
+        <th scope="col">Datum</th>
+      <th scope="col">Übung</th>
+        <th scope="col">Gewicht</th>
+      <th scope="col">Wiederholungen</th>
 
 
     </tr>
@@ -34,7 +39,7 @@
   </tbody>
     </table>
 
-     <a href="{{ url_for('analyse') }}">Uebung analysieren</a>
+
  </main>
 
  <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>

@@ -1,16 +1,21 @@
 {% include "head.html" %}
+<style>
+body {
+  background-image: url('https://images.unsplash.com/photo-1605296867304-46d5465a13f1?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+</style>
 <body>
+<br>
+<br>
+<center><h2 style="color: white">Weitere Übungen eingeben?</h2></center>
 
-<p>Weitere Übungen eingeben?</p>
 
 
 
 <br>
 <br>
-<br>
-<br>
-<form method="POST" action="">
-     <label for="subject"><b>Übung</b></label>
+<form method="POST" action="">  <!--gleiche Seite wie tracker.html, ermöglichst weitere Eingaben aber Funktion ist gleich-->
+     <label for="subject" style="color: white"><b>Übung</b></label>
                         <select name="uebung" class="form-control" id="uebung" placeholder="uebung auswaehlen?" required>
                             <option value selected>Wähle aus der Liste</option>
                             <option value="Bankdruecken">Bankdrücken</option>
@@ -56,13 +61,13 @@
                     </div><!--Eingaben werden auf Server geladen mit Post-->
 
 
-<div class="form-group"> <!--wie bereits oben beschrieben-->
-                        <label for="email"><b>Gewicht</b></label>
+<div class="form-group">
+                        <label for="email" style="color: white"><b>Gewicht</b></label>
                             <input type="text" name="kilo"    class="form-control" id="subject" placeholder="Gewicht" required  />
                     </div>
 
                     <div class="form-group">
-                        <label for="email"><b>Wiederholungen</b></label>
+                        <label for="email" style="color: white"><b>Wiederholungen</b></label>
                             <input type="text" name="wiederholungen" class="form-control" placeholder="Wiederholungen" required>
                     </div>
 
@@ -77,7 +82,7 @@
 
 
 
-<p>Hast du alle Übungen erfasst? <a class="btn btn-secondary" href="tracking" role="button">Zur Trackingliste &raquo;</a></p> </p>
+<center><p style="color: white"><b>Hast du alle Übungen erfasst? <a class="btn btn-secondary" href="tracking" role="button">Zur Trackingliste &raquo;</a></b></p> </center> <!--Link zur Trackingliste-->
 
      <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js" integrity="sha384-q2kxQ16AaE6UbzuKqyBE9/u/KzioAlnx2maXQHiDX9d4/zp8Ok3f+M7DPm+Ib6IU" crossorigin="anonymous"></script>
